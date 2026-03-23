@@ -6,7 +6,62 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Movies!</title>
     <style>
-        /* Part 3: Your styling goes here */
+        body {
+            font-family: 'Trebuchet MS', Arial, sans-serif;
+            background-color: #4cd4ec;
+            margin: 0;
+            padding: 20px;
+        }
+        div {
+            background-color: #ffffff;
+            border-radius: 12px;
+            margin-bottom: 25px;
+            padding: 16px;
+            max-width: 600px;
+            box-shadow: 0 4px 12px rgba(255, 23, 23, 0.1);
+            transition: transform 0.2s ease, box-shadow 0.2s ease;
+        }
+        div:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 8px 18px rgba(0, 0, 0, 0.15);
+        }
+        img {
+            width: 100%;
+            max-width: 300px;
+            border-radius: 10px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        h2 {
+            margin: 10px 0 5px 0;
+        }
+        h3 {
+            margin-top: 12px;
+            margin-bottom: 4px;
+            color: #444;
+        }
+        p {
+            margin: 6px 0;
+            line-height: 1.4;
+        }
+        span {
+            margin-right: 10px;
+            color: #555;
+        }
+        time {
+            color: #777;
+            font-size: 0.9em;
+            margin-left: 5px;
+        }
+        .genre {
+            background-color: #007BFF;
+            color: white;
+            padding: 4px 8px;
+            border-radius: 8px;
+            margin-right: 6px;
+            display: inline-block;
+            font-size: 0.8em;
+        }
     </style>
     <script>
         function reverseString(s) {
@@ -19,8 +74,72 @@
                 const bodyElement = document.querySelector("body")
                 if (xhr.status == 200) {
 		            /* Part 2: Build the HTML elements here and append them to the body */ 
+
+                    var responseJson = JSON.parse(xhr.responseText);
+                    for (var i=0; i< responseJson.length; i++) {
+                        const filmContainer = document.createElement("div");
+                        const image = document.createElement("img");
+                        image.src = responseJson[i]["Poster"];
+                        filmContainer.appendChild(image);
+
+                        const title = document.createElement("h2");
+                        title.textContent = responseJson[i]["Title"];
+                        filmContainer.appendChild(title);
+                        
+                        const runTime = document.createElement("span");
+                        const rawTime = parseInt(responseJson[i]["Runtime"]);
+                        runTime.textContent = ((rawTime/60) - (rawTime%60)/60) + " h " + rawTime%60 + " min";
+                        filmContainer.appendChild(runTime);
+
+                        const releaseDate = document.createElement("time");
+                        releaseDate.dateTime = responseJson[i]["Released"];
+                        releaseDate.textContent = " Released on " + responseJson[i]["Released"];
+                        filmContainer.appendChild(releaseDate);
+
+                        const genreContainer = document.createElement("p");
+                        const genres = responseJson[i]["Genres"];
+                        genres.forEach(g => {
+                            const span = document.createElement("span");
+                            span.classList.add("genre");
+                            span.textContent = g.trim();
+                            genreContainer.appendChild(span);
+                        });
+                        filmContainer.appendChild(genreContainer);
+
+                        const plot = document.createElement("p");
+                        plot.textContent = responseJson[i]["Plot"];
+                        filmContainer.appendChild(plot);
+
+                        const director = document.createElement("h3");
+                        director.textContent = "Directors";
+                        filmContainer.appendChild(director);
+
+                        const directors = document.createElement("p");
+                        directors.textContent = responseJson[i]["Directors"];
+                        filmContainer.appendChild(directors);
+
+                        const writer = document.createElement("h3");
+                        writer.textContent = "Writers";
+                        filmContainer.appendChild(writer);
+
+                        const writers = document.createElement("p");
+                        writers.textContent = responseJson[i]["Writers"];
+                        filmContainer.appendChild(writers);
+
+                        const actor = document.createElement("h3");
+                        actor.textContent = "Actors";
+                        filmContainer.appendChild(actor);
+
+                        const actors = document.createElement("p");
+                        actors.textContent = responseJson[i]["Actors"];
+                        filmContainer.appendChild(actors);
+
+                        bodyElement.appendChild(filmContainer);
+                    }
+
+
                     //bodyElement.append(reverseString(xhr.responseText))
-                    bodyElement.append(xhr.responseText)
+                    //bodyElement.append(xhr.responseText)
                 } else {
                     bodyElement.append("Daten konnten nicht geladen werden, Status " + xhr.status + " - " + xhr.statusText)
                 }

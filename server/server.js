@@ -29,7 +29,7 @@ app.get('/movies', function (req, res) {
                     Writers: ["Christopher Nolan"],
                     Actors: ["Leonardo DiCaprio", "Joseph Gordon-Levitt", "Elliot Page"],
                     Plot: "A thief who steals corporate secrets through dream-sharing technology is given the inverse task of planting an idea into the mind of a C.E.O.",
-                    Poster: "https://m.media-amazon.com/images/M/MV5BMmEzNTYzNmUtYzY1My00ZjQ3LWFmNTEtODM1ZmRlYzQ0ZTRkXkEyXkFqcGdeQXVyMTMxODk2OTU@._V1_SX300.jpg",
+                    Poster: "https://m.media-amazon.com/images/M/MV5BMjAxMzY3NjcxNF5BMl5BanBnXkFtZTcwNTI5OTM0Mw@@._V1_SX300.jpg",
                     Metascore: 74,
                     imdbRating: 8.8
                   },
@@ -42,7 +42,7 @@ app.get('/movies', function (req, res) {
                     Writers: ["Lana Wachowski", "Lilly Wachowski"],
                     Actors: ["Keanu Reeves", "Laurence Fishburne", "Carrie-Anne Moss"],
                     Plot: "A hacker discovers the reality he lives in is a simulation and joins a rebellion against the machines controlling humanity.",
-                    Poster: "https://m.media-amazon.com/images/M/MV5BNzQzOTk3OTAtNDQ3Zi00ODZmLTk3YTItNDNkZTk3ZDE4ZTRhXkEyXkFqcGdeQXVyNDYyMDk5MTU@._V1_SX300.jpg",
+                    Poster: "https://m.media-amazon.com/images/M/MV5BN2NmN2VhMTQtMDNiOS00NDlhLTliMjgtODE2ZTY0ODQyNDRhXkEyXkFqcGc@._V1_SX300.jpg",
                     Metascore: 73,
                     imdbRating: 8.7
                   }]
